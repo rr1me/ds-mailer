@@ -6,7 +6,7 @@ import buttonsToExecute from "../buttons";
 const interactionCreate: Event<Interaction> = async i => {
     if (i.isChatInputCommand()) {
         const cmd = i.commandName;
-        await commandsToExecute[cmd as keyof typeof commandsToExecute].exec(i);
+        await commandsToExecute.find(x=>x.builder.name === cmd)?.exec(i);
         return;
     }
 

@@ -8,7 +8,10 @@ import {usedSendToChannel} from "../commands/sendToChannel";
 const messageCreate: Event<Message> = async m => {
     const userId = m.author.id;
 
-    const {get: getUsedMailing, remove: removeUsedMailing} = InternalMemoryProcessor(usedMailing);
+    const {
+        get: getUsedMailing,
+        remove: removeUsedMailing
+    } = InternalMemoryProcessor(usedMailing);
     const mailingInteraction = getUsedMailing(userId);
     if (mailingInteraction) {
         (await m.guild!.members.fetch()).each(member => {
@@ -27,7 +30,10 @@ const messageCreate: Event<Message> = async m => {
         return;
     }
 
-    const {get: getSendToRole, remove: removeUsedSendToRole} = InternalMemoryProcessor(usedSendToRole);
+    const {
+        get: getSendToRole,
+        remove: removeUsedSendToRole
+    } = InternalMemoryProcessor(usedSendToRole);
     const sendToRoleInteraction = getSendToRole(userId);
     if (sendToRoleInteraction) {
         const roleId = sendToRoleInteraction.options.getRole('role')!.id;
@@ -37,7 +43,7 @@ const messageCreate: Event<Message> = async m => {
             member.user.send({
                 content: m.content,
                 files: m.attachments.map(x => x.url)
-            })
+            });
         });
 
         removeUsedSendToRole(userId);
@@ -48,7 +54,10 @@ const messageCreate: Event<Message> = async m => {
         return;
     }
 
-    const {get: getSendToChannel, remove: removeUsedSendToChannel} = InternalMemoryProcessor(usedSendToChannel);
+    const {
+        get: getSendToChannel,
+        remove: removeUsedSendToChannel
+    } = InternalMemoryProcessor(usedSendToChannel);
     const sendToChannelInteraction = getSendToChannel(userId);
     if (sendToChannelInteraction) {
         const members = (await m.guild!.members.fetch()).filter(x => !x.user.bot && x.permissionsIn(m.channel.id).has(PermissionsBitField.Flags.ViewChannel));

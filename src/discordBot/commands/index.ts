@@ -1,61 +1,16 @@
 import mailing from "./mailing";
-import {ApplicationCommandDataResolvable, ChatInputCommandInteraction, Client, SlashCommandBuilder,} from "discord.js";
-import testCommand from "./test";
+import {ChatInputCommandInteraction, Client, SlashCommandBuilder,} from "discord.js";
 import sendToRole from "./sendToRole";
 import sendToChannel from "./sendToChannel";
 
-type Commands = 'mailing' | 'test' | 'sendtorole' | 'sendtochannel' // only lowercase
-
 export type Command = (i: ChatInputCommandInteraction) => Promise<void>;
-
-// export const commandsToExecute = {
-//     'mailing': {
-//         exec: mailing,
-//         description: 'Mailing command',
-//         nameLocalizations: {
-//             ru: 'рассылка'
-//         }
-//     },
-//     'test': {
-//         exec: testCommand,
-//         description: 'Test shot',
-//         nameLocalizations: {
-//             ru: 'отправитьроли'
-//         }
-//     },
-//     'sendtorole': {
-//         exec: sendToRole,
-//         description: 'Sending message to users with that role',
-//         nameLocalizations: {
-//             ru: 'отправитьроли'
-//         }
-//         // options: [
-//         //     {
-//         //         name: 'role',
-//         //         description: 'Role to send a message',
-//         //         required: true,
-//         //         type: 8
-//         //     }
-//         // ]
-//     },
-//     'sendtochannel': {
-//         exec: sendToChannel,
-//         description: 'Sending message to all users in that message channel'
-//     }
-// } as CommandsToExecute;
-
-// export const commandsToRegister = Object.entries(commandsToExecute).map((v) => ({
-//     ...v[1],
-//     name: v[0]
-// }));
-
 
 type CommandsToExecute = {
     builder: SlashCommandBuilder,
     exec: Command
 };
 
-const commandsToExecute = [
+export const commandsToExecute = [
     {
         builder: new SlashCommandBuilder().setName('mailing').setDescription('Mailing command')
             .setNameLocalization('ru', 'рассылка').setDescriptionLocalization('ru', 'Команда для рассылки'),
