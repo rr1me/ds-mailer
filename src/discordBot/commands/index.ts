@@ -19,7 +19,7 @@ export const commandsToExecute = [
     {
         builder: new SlashCommandBuilder().setName('sendtorole').setDescription('Sending message to users with that role')
             .setNameLocalization('ru', 'отправитьроли').setDescriptionLocalization('ru', 'Отправить сообщение юзерам с выбранной ролью')
-            .addRoleOption(x=>
+            .addRoleOption(x =>
                 x.setName('role').setNameLocalization('ru', 'роль')
                     .setDescription('Role to send a message').setDescriptionLocalization('ru', 'Роль, которой нужно отправить сообщение')
                     .setRequired(true)
@@ -33,6 +33,6 @@ export const commandsToExecute = [
     }
 ] as CommandsToExecute[];
 
-const registerCommands = (client: Client) => client.guilds.cache.each(g => g.commands.set(commandsToExecute.map(x=>x.builder)));
+const registerCommands = (client: Client) => client.guilds.cache.each(g => g.commands.set(commandsToExecute.map(x => x.builder)));
 
 export default registerCommands;
