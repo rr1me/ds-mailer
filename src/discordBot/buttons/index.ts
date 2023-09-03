@@ -1,8 +1,9 @@
 import {ButtonInteraction} from "discord.js";
-import {classicCancelButton, InteractionType} from "../utils";
 import {usedMailing} from "../commands/mailing";
 import {usedSendToRole} from "../commands/sendToRole";
 import {usedSendToChannel} from "../commands/sendToChannel";
+import {InteractionType} from "../localizations";
+import {classicCancelButton} from "../classicProcessors";
 
 type Button = (i: ButtonInteraction) => Promise<void>;
 

@@ -1,6 +1,6 @@
 import {Event} from "./index";
 import {Message, PermissionsBitField} from "discord.js";
-import {InternalMemoryProcessor} from "../utils";
+import InternalMemoryProcessor from "../internalMemoryProcessor";
 import {usedMailing} from "../commands/mailing";
 import {usedSendToRole} from "../commands/sendToRole";
 import {usedSendToChannel} from "../commands/sendToChannel";

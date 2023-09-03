@@ -3,6 +3,7 @@ import fileUpload from "express-fileupload";
 import dotenv from "dotenv";
 import * as process from "process";
 import discordBot from "./discordBot";
+
 dotenv.config();
 
 const app = express();
