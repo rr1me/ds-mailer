@@ -1,12 +1,19 @@
 import {Event} from "./index";
-import {commandsToExecute} from "../commands";
+import {alreadyActivatedCommand, commandsToExecute} from "../commands";
 import {Interaction} from "discord.js";
 import buttonsToExecute from "../buttons";
+import {checkActivatedCommand} from "../urils";
 
 const interactionCreate: Event<Interaction> = async i => {
     if (i.isChatInputCommand()) {
+
+        if (checkActivatedCommand(i.user.id)) {
+            await alreadyActivatedCommand(i);
+            return;
+        }
+
         const cmd = i.commandName;
-        await commandsToExecute.find(x=>x.builder.name === cmd)?.exec(i);
+        await commandsToExecute.find(x => x.builder.name === cmd)?.exec(i);
         return;
     }
 

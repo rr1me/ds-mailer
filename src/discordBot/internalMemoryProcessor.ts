@@ -16,4 +16,4 @@ const InternalMemoryProcessor = (object: BotInternalMemory) => {
     };
 };
 
-export default InternalMemoryProcessor
+export default InternalMemoryProcessor;

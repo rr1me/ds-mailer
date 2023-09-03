@@ -2,9 +2,9 @@ import {Command} from "./commands";
 import {ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle} from "discord.js";
 import {Event} from "./events";
 import InternalMemoryProcessor, {BotInternalMemory} from "./internalMemoryProcessor";
-import {getLocalization, InteractionType} from "./localizations";
+import {getLocalization, ClassicInteractionType} from "./classicLocalizations";
 
-export const classicInteraction = (interactionType: InteractionType, storage: BotInternalMemory): Command => {
+export const classicInteraction = (interactionType: ClassicInteractionType, storage: BotInternalMemory): Command => {
     const {
         add,
         get
@@ -47,15 +47,16 @@ export const classicInteraction = (interactionType: InteractionType, storage: Bo
     };
 };
 
-export const classicCancelButton = (interactionType: InteractionType, storage: BotInternalMemory): Event<ButtonInteraction> => {
+export const classicCancelButton = (interactionType: ClassicInteractionType, storage: BotInternalMemory): Event<ButtonInteraction> => {
     const {remove} = InternalMemoryProcessor(storage);
 
     return async i => {
         const {buttonReply} = getLocalization(interactionType, i.locale);
 
         remove(i.user.id);
-        await i.editReply({
-            "content": buttonReply
+        await i.reply({
+            "content": buttonReply,
+            ephemeral: true
         });
     };
 };

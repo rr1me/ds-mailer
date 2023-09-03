@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import * as process from "process";
 import discordBot from "./discordBot";
 
-dotenv.config();
+dotenv.config({path: '.env.dev'});
 
 const app = express();
 const token = process.env.TOKEN!;
