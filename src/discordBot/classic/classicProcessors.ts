@@ -1,10 +1,10 @@
-import {Command} from "./commands";
+import {Command} from "../commands";
 import {ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle} from "discord.js";
-import {Event} from "./events";
-import InternalMemoryProcessor, {BotInternalMemory} from "./internalMemoryProcessor";
+import {Event} from "../events";
+import InternalMemoryProcessor, {BotInternalMemory} from "../internalMemoryProcessor";
 import {getLocalization, ClassicInteractionType} from "./classicLocalizations";
 
-export const classicInteraction = (interactionType: ClassicInteractionType, storage: BotInternalMemory): Command => {
+export const classicInteraction = (interactionType: ClassicInteractionType, storage: BotInternalMemory): Command => { // prepares a classic interaction event for interactionCreate
     const {
         add,
         get
@@ -47,7 +47,7 @@ export const classicInteraction = (interactionType: ClassicInteractionType, stor
     };
 };
 
-export const classicCancelButton = (interactionType: ClassicInteractionType, storage: BotInternalMemory): Event<ButtonInteraction> => {
+export const classicCancelButton = (interactionType: ClassicInteractionType, storage: BotInternalMemory): Event<ButtonInteraction> => { // prepares a cancel button for interactionCreate
     const {remove} = InternalMemoryProcessor(storage);
 
     return async i => {

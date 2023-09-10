@@ -1,7 +1,7 @@
 export type ClassicInteractionType = 'mailing' | 'sendToRole' | 'sendToChannel';
 export type AdditionalInteractionType = keyof AdditionalLocalizations
 
-export const getLocalization = (interactionType: ClassicInteractionType | AdditionalInteractionType, actualLocale: string) => {
+export const getLocalization = (interactionType: ClassicInteractionType | AdditionalInteractionType, actualLocale: string) => { // gets localization for certain function
     const locale = actualLocale === 'ru' ? actualLocale : 'en';
     return localizations[interactionType as keyof typeof localizations][locale];
 };

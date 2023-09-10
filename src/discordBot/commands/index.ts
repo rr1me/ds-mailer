@@ -2,7 +2,7 @@ import mailing from "./mailing";
 import {ChatInputCommandInteraction, Client, SlashCommandBuilder,} from "discord.js";
 import sendToRole from "./sendToRole";
 import sendToChannel from "./sendToChannel";
-import {getLocalization} from "../classicLocalizations";
+import {getLocalization} from "../classic/classicLocalizations";
 
 export type Command = (i: ChatInputCommandInteraction) => Promise<void>;
 
@@ -11,7 +11,7 @@ type CommandsToExecute = {
     exec: Command
 };
 
-export const commandsToExecute = [
+export const commandsToExecute = [ // setting up slash commands
     {
         builder: new SlashCommandBuilder().setName('mailing').setDescription('Mailing command')
             .setNameLocalization('ru', 'рассылка').setDescriptionLocalization('ru', 'Команда для рассылки'),

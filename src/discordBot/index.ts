@@ -18,6 +18,8 @@ const initialize = async (token: string) => {
     await client.login(token);
 
     registerCommands(client);
+
+    return client;
 };
 
 export default {initialize};

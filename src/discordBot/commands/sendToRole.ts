@@ -1,5 +1,5 @@
 import {BotInternalMemory} from "../internalMemoryProcessor";
-import {classicInteraction} from "../classicProcessors";
+import {classicInteraction} from "../classic/classicProcessors";
 
 export const usedSendToRole: BotInternalMemory = {x: []};
 

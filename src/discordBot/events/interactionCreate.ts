@@ -7,7 +7,7 @@ import {checkActivatedCommand} from "../urils";
 const interactionCreate: Event<Interaction> = async i => {
     if (i.isChatInputCommand()) {
 
-        if (checkActivatedCommand(i.user.id)) {
+        if (checkActivatedCommand(i.user.id)) { // denies interaction if user have already activated one. interaction means slash command
             await alreadyActivatedCommand(i);
             return;
         }
