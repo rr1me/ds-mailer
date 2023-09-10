@@ -1,9 +1,15 @@
 import {Attachment, AttachmentBuilder, Collection, Guild, GuildMember} from "discord.js";
+import * as fs from "fs";
 
 type Attachments = Attachment[] | AttachmentBuilder[] | string[];
-export const mail = async (guild: Guild, content: string, attachments: Attachments) => { // mail function
+export const mail = async (guild: Guild, content: string, attachments: Attachments, useInternalList: boolean) => { // mail function
+    const userIdArray: string[] = useInternalList ? JSON.parse(fs.readFileSync('./usersForMailing.json', 'utf8')) : [];
     (await guild.members.fetch()).each(member => {
+
         if (member.user.bot) return;
+
+        if (userIdArray.length > 0 && !userIdArray.includes(member.id)) return;
+
         member.user.send({
             content: content,
             files: attachments

@@ -27,7 +27,8 @@ type SendBody = {
     funcType: FuncType,
     guildId: string,
     channelId?: string,
-    roleId?: string
+    roleId?: string,
+    useInternalList?: boolean,
     message: string
 }
 
@@ -40,6 +41,7 @@ type SendBody = {
             guildId: Joi.string().required(),
             channelId: Joi.string(),
             roleId: Joi.string(),
+            useInternalList: Joi.boolean(),
             message: Joi.string().required()
         })
     }), async (req, res) => {
@@ -53,6 +55,7 @@ type SendBody = {
             guildId,
             channelId,
             roleId,
+            useInternalList,
             message
         } = req.body as SendBody;
 
@@ -70,7 +73,7 @@ type SendBody = {
 
         switch (funcType) {
             case "mail":
-                await mail(guild, message, files);
+                await mail(guild, message, files, !!useInternalList);
                 break;
             case "toRole":
                 await toRole(guild, message, files, roleId!);

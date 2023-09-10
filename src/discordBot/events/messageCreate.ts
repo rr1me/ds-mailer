@@ -15,7 +15,9 @@ const messageCreate: Event<Message> = async m => {
     } = InternalMemoryProcessor(usedMailing);
     const mailingInteraction = getUsedMailing(userId);
     if (mailingInteraction) {
-        await mail(m.guild!, m.content, m.attachments.map(x => x.url));
+        const useInternalList = mailingInteraction.options.getBoolean('useInternalList');
+
+        await mail(m.guild!, m.content, m.attachments.map(x => x.url), !!useInternalList);
 
         removeUsedMailing(userId);
 
